@@ -22,7 +22,7 @@ partial class SandboxPlayer : Player
 
 	public override void Spawn()
 	{
-		MainCamera = new FirstPersonCamera();
+		MainCamera = new ThirdPersonCamera();
 		LastCamera = MainCamera;
 
 		base.Spawn();
@@ -75,7 +75,7 @@ partial class SandboxPlayer : Player
 		VehicleCamera = null;
 		Vehicle = null;
 
-		BecomeRagdollOnClient( Velocity, lastDamage.Flags, lastDamage.Position, lastDamage.Force, GetHitboxBone( lastDamage.HitboxIndex ) );
+		//BecomeRagdollOnClient( Velocity, lastDamage.Flags, lastDamage.Position, lastDamage.Force, GetHitboxBone( lastDamage.HitboxIndex ) );
 		LastCamera = MainCamera;
 		MainCamera = new SpectateRagdollCamera();
 		Camera = MainCamera;
@@ -84,7 +84,7 @@ partial class SandboxPlayer : Player
 		EnableAllCollisions = false;
 		EnableDrawing = false;
 
-		Inventory.DropActive();
+		//Inventory.DropActive();
 		Inventory.DeleteContents();
 	}
 
@@ -155,14 +155,14 @@ partial class SandboxPlayer : Player
 
 		if ( Input.Pressed( InputButton.View ) )
 		{
-			if ( MainCamera is not FirstPersonCamera )
+			UnDress();
+			if ( IsServer )
 			{
-				MainCamera = new FirstPersonCamera();
+				
+				Dress();
 			}
-			else
-			{
-				MainCamera = new ThirdPersonCamera();
-			}
+			//
+
 		}
 
 		Camera = GetActiveCamera();
@@ -177,21 +177,6 @@ partial class SandboxPlayer : Player
 
 				timeSinceDropped = 0;
 			}
-		}
-
-		if ( Input.Released( InputButton.Jump ) )
-		{
-			if ( timeSinceJumpReleased < 0.3f )
-			{
-				Game.Current?.DoPlayerNoclip( cl );
-			}
-
-			timeSinceJumpReleased = 0;
-		}
-
-		if ( Input.Left != 0 || Input.Forward != 0 )
-		{
-			timeSinceJumpReleased = 1;
 		}
 	}
 

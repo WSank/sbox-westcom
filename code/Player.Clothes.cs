@@ -31,7 +31,7 @@ partial class SandboxPlayer
 			pants = new ModelEntity();
 			pants.SetModel( model );
 			pants.SetParent( this, true );
-			pants.EnableShadowInFirstPerson = true;
+			pants.EnableShadowInFirstPerson = false;
 			pants.EnableHideInFirstPerson = true;
 
 			SetBodyGroup( "Legs", 1 );
@@ -50,7 +50,7 @@ partial class SandboxPlayer
 			jacket = new ModelEntity();
 			jacket.SetModel( model );
 			jacket.SetParent( this, true );
-			jacket.EnableShadowInFirstPerson = true;
+			jacket.EnableShadowInFirstPerson = false;
 			jacket.EnableHideInFirstPerson = true;
 
 			var propInfo = jacket.GetModel().GetPropData();
@@ -75,12 +75,11 @@ partial class SandboxPlayer
 			shoes = new ModelEntity();
 			shoes.SetModel( model );
 			shoes.SetParent( this, true );
-			shoes.EnableShadowInFirstPerson = true;
+			shoes.EnableShadowInFirstPerson = false;
 			shoes.EnableHideInFirstPerson = true;
 
 			SetBodyGroup( "Feet", 1 );
 		}
-
 		if ( true )
 		{
 			var model = Rand.FromArray( new[]
@@ -105,8 +104,37 @@ partial class SandboxPlayer
 			hat = new ModelEntity();
 			hat.SetModel( model );
 			hat.SetParent( this, true );
-			hat.EnableShadowInFirstPerson = true;
+			hat.EnableShadowInFirstPerson = false;
 			hat.EnableHideInFirstPerson = true;
+		}
+	}
+	public void UnDress()
+	{
+		if ( true )
+		{
+			if ( !dressed ) return;
+
+			if ( pants.IsValid() && !string.IsNullOrEmpty( pants.GetModel().ToString() ) )
+			{
+				pants.Delete();
+			}
+			if ( jacket.IsValid() && !string.IsNullOrEmpty( jacket.GetModel().ToString() ) )
+			{
+				jacket.Delete();
+			}
+			if ( shoes.IsValid() && !string.IsNullOrEmpty( shoes.GetModel().ToString() ) )
+			{
+				shoes.Delete();
+			}
+			if ( hat.IsValid() && !string.IsNullOrEmpty( hat.GetModel().ToString() ) )
+			{
+				hat.Delete();
+			}
+			SetBodyGroup( "Legs", 0 );
+			SetBodyGroup( "Feet", 0 );
+			SetBodyGroup( "Chest", 0 );
+
+			dressed = false;
 		}
 	}
 }

@@ -28,31 +28,21 @@ partial class Flashlight : Weapon
 		worldLight.Enabled = false;
 	}
 
-	public override void CreateViewModel()
-	{
-		base.CreateViewModel();
-
-		viewLight = CreateLight();
-		viewLight.SetParent( ViewModelEntity, "light", new Transform( LightOffset ) );
-		viewLight.EnableViewmodelRendering = true;
-		viewLight.Enabled = LightEnabled;
-	}
-
 	private SpotLightEntity CreateLight()
 	{
 		var light = new SpotLightEntity
 		{
 			Enabled = true,
 			DynamicShadows = true,
-			Range = 512,
-			Falloff = 1.0f,
+			Range = 1024,
+			Falloff = 50.0f,
 			LinearAttenuation = 0.0f,
-			QuadraticAttenuation = 1.0f,
-			Brightness = 2,
+			QuadraticAttenuation = 10.0f,
+			Brightness = 5,
 			Color = Color.White,
 			InnerConeAngle = 20,
 			OuterConeAngle = 40,
-			FogStength = 1.0f,
+			FogStength = 0.1f,
 			Owner = Owner,
 			LightCookie = Texture.Load( "materials/effects/lightcookie.vtex" )
 		};

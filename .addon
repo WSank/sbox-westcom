@@ -1,5 +1,18 @@
 {
 	"sharedassets": "*.*",
 	"type": "game",
-	"ident": "facepunch.sandbox"
+	"name": "WestCom",
+	"version": "0.01",
+	"sharedassets": "*.*",
+
+	"depends": [
+		"base"
+	],
+
+	"gamemodes": [
+		{
+			"name": "WestCom",
+			"title": "WestCom"
+		}
+	]
 }
