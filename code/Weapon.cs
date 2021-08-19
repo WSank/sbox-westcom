@@ -74,14 +74,14 @@ public partial class Weapon : BaseWeapon, IUse
 	[ClientRpc]
 	public virtual void StartReloadEffects()
 	{
-		ViewModelEntity?.SetAnimBool( "reload", true );
+		//ViewModelEntity?.SetAnimBool( "reload", true );
 
 		// TODO - player third person model reload
 	}
 
 	public override void CreateViewModel()
 	{
-		Host.AssertClient();
+		/*Host.AssertClient();
 
 		if ( string.IsNullOrEmpty( ViewModelPath ) )
 			return;
@@ -93,7 +93,7 @@ public partial class Weapon : BaseWeapon, IUse
 			EnableViewmodelRendering = true
 		};
 
-		ViewModelEntity.SetModel( ViewModelPath );
+		ViewModelEntity.SetModel( ViewModelPath );*/
 	}
 
 	public bool OnUse( Entity user )
@@ -139,7 +139,7 @@ public partial class Weapon : BaseWeapon, IUse
 			_ = new Sandbox.ScreenShake.Perlin();
 		}
 
-		ViewModelEntity?.SetAnimBool( "fire", true );
+		//ViewModelEntity?.SetAnimBool( "fire", true );
 		CrosshairPanel?.CreateEvent( "fire" );
 	}
 

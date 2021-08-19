@@ -46,7 +46,7 @@ partial class SandboxPlayer : Player
 		EnableAllCollisions = true;
 		EnableDrawing = true;
 		EnableHideInFirstPerson = true;
-		EnableShadowInFirstPerson = true;
+		EnableShadowInFirstPerson = false;
 
 		Dress();
 

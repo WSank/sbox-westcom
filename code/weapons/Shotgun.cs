@@ -4,7 +4,7 @@
 partial class Shotgun : Weapon
 {
 	public override string ViewModelPath => "weapons/rust_pumpshotgun/v_rust_pumpshotgun.vmdl";
-	public override float PrimaryRate => 1;
+	public override float PrimaryRate => 10.0f;
 	public override float SecondaryRate => 1;
 	public override float ReloadTime => 0.5f;
 
